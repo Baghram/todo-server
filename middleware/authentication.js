@@ -5,7 +5,8 @@ const { User } = require('../models')
 module.exports = function(req, res, next) {
     const access_token = req.headers.access_token
     const authenticated = jwt.verify(access_token, process.env.JWT_SECRET) //Token_JWT(JWT_SECRET) buat nya di web jwt.io(generate code)
-    req.id = authenticated.id
+    req.authenticated = authenticated
+   
     User.findOne({
         where:{
             id: authenticated.id
@@ -13,19 +14,19 @@ module.exports = function(req, res, next) {
     })
         .then(function(result) {
             if(result) {
+                req.id = result.id
                 next()
             }
             else{
-                res.status(403).json({
-                    error: "Not Authenticated"
-                })
+                let err = {
+                    message: "Authentication Failed"
+                }
+                throw err
             }
             
         })
         .catch(function(err) {
-            res.status(500).json({
-                error: "Internal Server Error"
-            })
+            next(err)
         })
 
         // localStorage.getItem('access_token')

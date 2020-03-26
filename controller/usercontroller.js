@@ -7,6 +7,7 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 class UserController{
 
     static Register(req, res, next) {
+        console.log(req.body)
         const { Email, Password } = req.body  
         console.log(Password)
         User.create({
@@ -28,12 +29,14 @@ class UserController{
 
     static Login(req, res, next) {
         console.log('static login')
+        console.log(req.body)
         User.findOne({
             where:{
                 Email : req.body.Email
             }
         })
             .then(function(response) {
+                console.log(response)
                 if(response) {
                     if(bcryptjs.compareSync(req.body.Password, response.Password)) {
                         console.log('decrypt sama')

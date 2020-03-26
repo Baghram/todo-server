@@ -3,6 +3,7 @@ const usercontroller = require('../controller/usercontroller')
 
 // userRoute.post('/register', usercontroller.Register)
 userRoute.post('/register', function(req, res, next) {
+    console.log(req.body)
     usercontroller.Register(req, res, next)
 })
 

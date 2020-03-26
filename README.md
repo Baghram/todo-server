@@ -15,7 +15,7 @@ Postman Documentation : https://documenter.getpostman.com/view/10570615/SzKbKukw
 
 * **Headers:**
 
-  `access_token`
+  `access_token` : String(From Login LocalStorage.GetItem('access_token'))
   
 *  **URL Params**
 
@@ -24,11 +24,11 @@ Postman Documentation : https://documenter.getpostman.com/view/10570615/SzKbKukw
 
 * **Data Params**
 
-  None
+
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 201 <br />
     **Content:** 
    `[
     {
@@ -64,7 +64,7 @@ Postman Documentation : https://documenter.getpostman.com/view/10570615/SzKbKukw
 
 * **Headers:**
 
-  `access_token`
+  `access_token` : String(From Login LocalStorage.GetItem('access_token'))
   
 *  **URL Params**
     id: Integer
@@ -111,7 +111,7 @@ Postman Documentation : https://documenter.getpostman.com/view/10570615/SzKbKukw
 
 * **Headers:**
 
-  `access_token`
+  `access_token` : String(From Login LocalStorage.GetItem('access_token'))
   
 *  **URL Params**
     id: Integer
@@ -165,7 +165,7 @@ Postman Documentation : https://documenter.getpostman.com/view/10570615/SzKbKukw
 
 * **Headers:**
 
-  `access_token`
+  `access_token` : String(From Login LocalStorage.GetItem('access_token'))
   
 *  **URL Params**
 
@@ -264,15 +264,18 @@ Postman Documentation : https://documenter.getpostman.com/view/10570615/SzKbKukw
 
 * **Data Params**
 
-  None
-
+  email:string,
+  password:string
 * **Success Response:**
 
   * **Code:** 200 <br />
     **Content:** 
 {
-    "id": 35,
-    "Email": "testing123@gmail.com"
+    "payload": {
+        "id": 44,
+        "Email": "ahaha@mail.com"
+    },
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDQsImlhdCI6MTU4MzgyODcxMH0.85kCEAH3EjSIfj1Dxg-YV7XIsOrCwrJdVYBs-DzXn4g"
 }
  
 * **Error Response:**
@@ -283,7 +286,7 @@ Postman Documentation : https://documenter.getpostman.com/view/10570615/SzKbKukw
 }`
 
 =======================================================
-**login**
+**login with GoogleAuth**
 ----
   Returns json data about users.
 
