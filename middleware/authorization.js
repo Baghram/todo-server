@@ -13,9 +13,10 @@ module.exports = function(req, res, next) {
                 next()
             }
             else{
-                res.status(500).json({
-                    error: "Unauthorized"
-                })
+                let err = {
+                    message: "UnAuthorized"
+                }
+                throw err
             }
             
         })
